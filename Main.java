@@ -32,6 +32,10 @@ public class Main {
             System.out.println("Insertion Sort:");
             sorting.printArray(numbersInsertion);
 
+            sorting.selectionSort(numbersInsertion);
+            System.out.println("Selection Sort:");
+            sorting.printArray(numbersInsertion);
+
 
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
