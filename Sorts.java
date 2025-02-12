@@ -77,6 +77,86 @@ public class Sorts{
         }
     }
 
+
+    /**
+     * Merge Sort
+     * Divide el array en dos partes y las ordena de manera recursiva.
+     * @param data Array a ordenar
+     * @param temp Array temporal
+     * @param low Indíce más bajo del subarreglo
+     * @param high Indíce más alto del subarreglo
+     */
+    private static void merge(int data[], int temp[], int low, int middle, int high) {
+        int ri = low;
+        int ti = low;
+        int di = middle;
+        
+        while (ti < middle && di <= high) {
+            if (data[di] < temp[ti]) {
+                data[ri++] = data[di++];
+            } else {
+                data[ri++] = temp[ti++];
+            }
+        }
+        
+        while (ti < middle) {
+            data[ri++] = temp[ti++];
+        }
+    }
+
+
+    /**
+     * Método recursivo para el Merge Sort
+     * @param data Array a ordenar
+     * @param temp Array temporal
+     * @param low Indíce más bajo del subarreglo
+     * @param high Indíce más alto del subarreglo
+     */
+    private static void mergeSortRecursive(int data[], int temp[], int low, int high) {
+        int n = high-low+1;
+        int middle = low + n/2;
+        int i;
+        if (n < 2) return;
+        for (i = low; i < middle; i++) {
+            temp[i] = data[i];
+        }
+        mergeSortRecursive(temp,data,low,middle-1);
+        mergeSortRecursive(data,temp,middle,high);
+        merge(data,temp,low,middle,high);
+    }
+
+
+    /**
+     * Método para iniciar el Merge Sort
+     * @param data Array a ordenar
+     * @param n Tamaño del array
+     */
+    public void mergeSort(int data[], int n) {
+        mergeSortRecursive(data,new int[n],0,n-1);
+    }
+
+
+    /**
+     * Insertion Sort
+     * Ordena los elementos uno por uno, comparando cada uno con los anteriores.
+     * @param arr Array a ordenar
+     */
+    public void insertionSort(int arr[])
+    {
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            int key = arr[i];
+            int j = i - 1;
+
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+
     /**
      * Méto para imprimir el array y verificar que se ordenen de manera adecuada.
      * @param arr

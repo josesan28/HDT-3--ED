@@ -13,6 +13,8 @@ public class Main {
 
             int[] numbersQuick = numbers.clone();
             int[] numbersRadix = numbers.clone();
+            int[] numbersMerge = numbers.clone();
+            int[] numbersInsertion = numbers.clone();
 
             sorting.quickSort(numbersQuick, 0, numbersQuick.length - 1);
             System.out.println("Quick Sort:");
@@ -21,6 +23,15 @@ public class Main {
             sorting.radixSort(numbersRadix);
             System.out.println("Radix Sort:");
             sorting.printArray(numbersRadix);
+
+            sorting.mergeSort(numbersMerge, numbersMerge.length - 1);
+            System.out.println("Merge Sort:");
+            sorting.printArray(numbersMerge);
+
+            sorting.insertionSort(numbersInsertion);
+            System.out.println("Insertion Sort:");
+            sorting.printArray(numbersInsertion);
+
 
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
