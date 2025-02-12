@@ -81,60 +81,68 @@ public class Sorts{
     /**
      * Merge Sort
      * Divide el array en dos partes y las ordena de manera recursiva.
-     * @param data Array a ordenar
-     * @param temp Array temporal
-     * @param low Indíce más bajo del subarreglo
-     * @param high Indíce más alto del subarreglo
+     * @param arr Array a ordenar
+     * @param l Índice donde se empieza a ordenar el primer subarray
+     * @param m Mitad del subarreglo
+     * @param r Índice hasta donde se ordena el subarreglo
      */
-    private static void merge(int data[], int temp[], int low, int middle, int high) {
-        int ri = low;
-        int ti = low;
-        int di = middle;
-        
-        while (ti < middle && di <= high) {
-            if (data[di] < temp[ti]) {
-                data[ri++] = data[di++];
-            } else {
-                data[ri++] = temp[ti++];
+    public void merge(int arr[], int l, int m, int r) {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+
+        int L[] = new int[n1];
+        int R[] = new int[n2];
+
+        for (int i = 0; i < n1; ++i)
+            L[i] = arr[l + i];
+        for (int j = 0; j < n2; ++j)
+            R[j] = arr[m + 1 + j];
+
+        int i = 0, j = 0;
+
+        int k = l;
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
             }
+            else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
         }
-        
-        while (ti < middle) {
-            data[ri++] = temp[ti++];
+
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
         }
     }
-
 
     /**
-     * Método recursivo para el Merge Sort
-     * @param data Array a ordenar
-     * @param temp Array temporal
-     * @param low Indíce más bajo del subarreglo
-     * @param high Indíce más alto del subarreglo
+     * Método para ordenar el array de manera recursiva.
+     * @param arr Array a ordenar
+     * @param l Índice donde se empieza a ordenar el primer subarray
+     * @param r Índice hasta donde se ordena el subarreglo
      */
-    private static void mergeSortRecursive(int data[], int temp[], int low, int high) {
-        int n = high-low+1;
-        int middle = low + n/2;
-        int i;
-        if (n < 2) return;
-        for (i = low; i < middle; i++) {
-            temp[i] = data[i];
+    public void mergeSort(int arr[], int l, int r) {
+        if (l < r) {
+
+            int m = l + (r - l) / 2;
+
+            mergeSort(arr, l, m);
+            mergeSort(arr, m + 1, r);
+
+            merge(arr, l, m, r);
         }
-        mergeSortRecursive(temp,data,low,middle-1);
-        mergeSortRecursive(data,temp,middle,high);
-        merge(data,temp,low,middle,high);
     }
-
-
-    /**
-     * Método para iniciar el Merge Sort
-     * @param data Array a ordenar
-     * @param n Tamaño del array
-     */
-    public void mergeSort(int data[], int n) {
-        mergeSortRecursive(data,new int[n],0,n-1);
-    }
-
 
     /**
      * Insertion Sort

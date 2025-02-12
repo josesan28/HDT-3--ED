@@ -24,7 +24,7 @@ public class Main {
             System.out.println("Radix Sort:");
             sorting.printArray(numbersRadix);
 
-            sorting.mergeSort(numbersMerge, numbersMerge.length - 1);
+            sorting.mergeSort(numbersMerge, 0, numbersMerge.length - 1);
             System.out.println("Merge Sort:");
             sorting.printArray(numbersMerge);
 
