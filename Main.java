@@ -1,3 +1,11 @@
+/**
+ *  @author José Manuel Sanchez Hernández - 24092, Josué Antonio Isaac García Barrera
+ *  @version 1.0
+ *  Descripción: Este programa está hecho para comparar los tiempos de ejecución de diferentes algoritmos de ordenamiento.
+ *  Fecha de creación: 10/02/2025
+ *  Fecha de última modificación: 13/02/2025
+ */
+
 import java.io.IOException;
 
 public class Main {
@@ -8,7 +16,7 @@ public class Main {
 
         try {
 
-            generator.createFile("numeros.txt", 100);
+            generator.createFile("numeros.txt", 12000);
 
             int[] numbersInt = generator.readArchive("numeros.txt");
             Integer[] numbers = new Integer[numbersInt.length];
@@ -20,6 +28,7 @@ public class Main {
             Integer[] numbersRadix = numbers.clone();
             Integer[] numbersMerge = numbers.clone();
             Integer[] numbersInsertion = numbers.clone();
+            Integer[] numbersSelection = numbers.clone();
 
             sorting.quickSort(numbersQuick, 0, numbersQuick.length - 1);
             System.out.println("Quick Sort:");
@@ -37,9 +46,9 @@ public class Main {
             System.out.println("Insertion Sort:");
             sorting.printArray(numbersInsertion);
 
-            sorting.selectionSort(numbersInsertion);
+            sorting.selectionSort(numbersSelection);
             System.out.println("Selection Sort:");
-            sorting.printArray(numbersInsertion);
+            sorting.printArray(numbersSelection);
 
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
