@@ -16,7 +16,7 @@ public class Main {
 
         try {
 
-            generator.createFile("numeros.txt", 12000);
+            generator.createFile("numeros.txt", 100);
 
             int[] numbersInt = generator.readArchive("numeros.txt");
             Integer[] numbers = new Integer[numbersInt.length];

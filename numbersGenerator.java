@@ -23,7 +23,7 @@ public class NumbersGenerator {
         int[] numbers = new int[size];
 
         for (int i = 0; i < size; i++) {
-            numbers[i] = randomNumber.nextInt(30000);
+            numbers[i] = randomNumber.nextInt(3000);
         }
 
         Arrays.sort(numbers);
