@@ -4,17 +4,22 @@ public class Main {
 
     public static void main(String[] args) {
         NumbersGenerator generator = new NumbersGenerator();
-        Sorts sorting = new Sorts();
+        Sorts<Integer> sorting = new Sorts<>();
 
         try {
+
             generator.createFile("numeros.txt", 100);
 
-            int[] numbers = generator.readArchive("numeros.txt");
+            int[] numbersInt = generator.readArchive("numeros.txt");
+            Integer[] numbers = new Integer[numbersInt.length];
+            for (int i = 0; i < numbersInt.length; i++) {
+                numbers[i] = numbersInt[i];
+            }
 
-            int[] numbersQuick = numbers.clone();
-            int[] numbersRadix = numbers.clone();
-            int[] numbersMerge = numbers.clone();
-            int[] numbersInsertion = numbers.clone();
+            Integer[] numbersQuick = numbers.clone();
+            Integer[] numbersRadix = numbers.clone();
+            Integer[] numbersMerge = numbers.clone();
+            Integer[] numbersInsertion = numbers.clone();
 
             sorting.quickSort(numbersQuick, 0, numbersQuick.length - 1);
             System.out.println("Quick Sort:");
@@ -35,7 +40,6 @@ public class Main {
             sorting.selectionSort(numbersInsertion);
             System.out.println("Selection Sort:");
             sorting.printArray(numbersInsertion);
-
 
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
